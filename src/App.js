@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import './App.scss';
+import { CountryCard } from './components/CountryCard/CountryCard';
 
 function App() {
 
@@ -21,7 +22,18 @@ function App() {
 
   return (
     <div className="App">
-    </div>
+      {countriesData && countriesData.map((country) => (
+        <div
+          key={country.id}
+          className=""
+        >
+        <CountryCard 
+        countryName={country.name}
+        countryRegion={country.region}
+        countryArea={country.area} />
+        </div>))
+      };
+      </div>
   );
 }
 
