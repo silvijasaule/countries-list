@@ -1,0 +1,24 @@
+.country-card {
+width: 90vw;
+display: flex;
+flex-wrap: wrap;
+// align-items: center;
+// justify-content: center;
+background-color: rgb(211, 255, 209);
+color: black;
+border: 1px solid black;
+border-radius: 5px;
+margin-top: 12px;
+
+    &__:first-child{
+        margin-top: 0px
+    };
+
+    &__name {
+    width:100%
+    }
+
+    &__region {
+        width:100%
+        }
+}
