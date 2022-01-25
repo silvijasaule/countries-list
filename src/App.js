@@ -18,22 +18,48 @@ function App() {
     );
   }, []);
 
-  console.log(countriesData);
+  // Ascending (A to Z)
+  const sortAsc = []
+  .concat(countriesData)
+  .sort((a, b) => (a.name > b.name ? 1 : -1));
+
+  console.log(sortAsc);
+
+  // Descending (Z to A)
+  const sortDesc = []
+  .concat(countriesData)
+  .sort((a, b) => (a.name > b.name ? -1 : 1));
+
+  // eslint-disable-next-line no-unused-vars
+  const oceaniaRegion = countriesData.filter(country => country.region === "Oceania").map(filteredCountries => 
+    <li>
+
+    <CountryCard 
+    countryName={filteredCountries.name}
+    countryRegion={filteredCountries.region}
+    countryArea={filteredCountries.area} />
+      </li> )
+
+  console.log(sortDesc);
 
   return (
     <div className="App">
-      {countriesData && countriesData.map((country) => (
-        <div
-          key={country.id}
-          className=""
-        >
-        <CountryCard 
-        countryName={country.name}
-        countryRegion={country.region}
-        countryArea={country.area} />
-        </div>))
-      };
-      </div>
+      <ul>
+          {countriesData && countriesData.map((country) => (
+            <div
+              key={country.id}
+              className=""
+            >
+              <li>
+                <CountryCard 
+                countryName={country.name}
+                countryRegion={country.region}
+                countryArea={country.area} />
+              </li>
+            </div>))
+          };
+      </ul>
+    </div>
   );
 }
 
