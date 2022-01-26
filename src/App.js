@@ -5,6 +5,7 @@ import { CountryCard } from './components/CountryCard/CountryCard';
 function App() {
 
   const [countriesData, setCountriesData] = useState();
+  const [sortType, setSortType] = useState('asc');
 
   useEffect(() => {
   fetch(
@@ -18,36 +19,45 @@ function App() {
     );
   }, []);
 
-  // Ascending (A to Z)
-  const sortAsc = []
-  .concat(countriesData)
-  .sort((a, b) => (a.name > b.name ? 1 : -1));
+  
+  const sorted = countriesData?.sort( (a,b) => {
+    const isReversed = (sortType === 'asc') ? 1 : -1;
+    return isReversed * a.name.localeCompare(b.name);
+  })
 
-  console.log(sortAsc);
-
-  // Descending (Z to A)
-  const sortDesc = []
-  .concat(countriesData)
-  .sort((a, b) => (a.name > b.name ? -1 : 1));
+  const handleSort = (sortBy) => {
+    if(sortBy ==='asc'){
+      setSortType('asc')
+    } 
+    else if(sortBy === 'desc') {
+      setSortType('desc')
+    }
+    else {
+      return;
+    }
+  }
 
   // eslint-disable-next-line no-unused-vars
-  const oceaniaRegion = countriesData.filter(country => country.region === "Oceania").map(filteredCountries => 
-    <li>
-
-    <CountryCard 
-    countryName={filteredCountries.name}
-    countryRegion={filteredCountries.region}
-    countryArea={filteredCountries.area} />
-      </li> )
-
-  console.log(sortDesc);
+  const oceaniaRegion = countriesData?.filter(country => country.region === "Oceania");
 
   return (
     <div className="App">
+      <button type="button" className='button' onClick={() => handleSort('asc')}>Sort By Asc</button>
+      <button type="button" className='button' onClick={() => handleSort('desc')}>Sort By Desc</button>
+      <span>Only show countries that are:</span>
+      <button type="button" className='button' id="oceaniaRegionButton">In Oceania</button>
+      <button type="button" className='button'>Smaller than LT</button>
+      <button type="button" className='button' >Clear</button>
+
+      {/* <input type="radio" name="oceaniaRegionButton" id="oceaniaRegionButton" />
+      <label htmlFor="oceaniaRegionButton">in Oceania region</label>
+      <input type="radio" name="smallerThanLithuania" id="smallerThanLithuania" />
+      <label htmlFor="smallerThanLithuania">smaller than Lithuania</label> */}
+
       <ul>
-          {countriesData && countriesData.map((country) => (
+          {countriesData && sorted.map((country) => (
             <div
-              key={country.id}
+              key={country.index}
               className=""
             >
               <li>
