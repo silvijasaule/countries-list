@@ -1,0 +1,57 @@
+$_color-grey: rgb(65, 63, 63);
+$_font-weight-medium: 500;
+$_font-size-tiny: 12px;
+$_font-size-small: 14px;
+$_color-porcelain: #edeff1;
+$_color-chateau-gray: #9ea7b3;
+$_color-white:#fff;
+
+.button {
+    background-color: $_color-grey;
+    border: transparent;
+    border-radius: 65px;
+    color: $_color-white;
+    cursor: pointer;
+    font-weight: $_font-weight-medium;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+
+    &__content {
+        align-items: center;
+        display: flex;
+        justify-content: space-around;
+        line-height: 1.5;
+    }
+
+    &:hover {
+        background-color: darken($_color-grey, 20%);
+    }
+
+    &:active {
+        background-color:darken($_color-grey, 40%);
+    }
+
+    &:disabled {
+        background-color: $_color-porcelain;
+        color: $_color-chateau-gray;
+        cursor: default;
+
+        &:hover,
+        :active,
+        :focus {
+            background-color: $_color-porcelain;
+            color: $_color-chateau-gray;
+        }
+    }
+
+    &--medium {
+        font-size: $_font-size-tiny;
+        padding: 9px 16px;
+    }
+
+    &--large {
+        font-size: $_font-size-small;
+        padding: 12px 24px;
+    }
+}
