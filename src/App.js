@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import './App.scss';
 import { CountryCard } from './components/CountryCard/CountryCard';
+import _ from "lodash"; 
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
       }
     );
   }, []);
+
+  const allCountries = _.cloneDeep(countriesData);
 
   
   const sorted = countriesData?.sort( (a,b) => {
@@ -40,19 +43,23 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const oceaniaRegion = countriesData?.filter(country => country.region === "Oceania");
 
+  const handleOceaniaFilter = () => {
+    setCountriesData(oceaniaRegion);
+      }
+
+      // unfortunately, doesn't work
+  const handleClear = () => {
+    console.log('clear clicked');
+    setCountriesData(allCountries)
+  }
+
   return (
     <div className="App">
       <button type="button" className='button' onClick={() => handleSort('asc')}>Sort By Asc</button>
       <button type="button" className='button' onClick={() => handleSort('desc')}>Sort By Desc</button>
       <span>Only show countries that are:</span>
-      <button type="button" className='button' id="oceaniaRegionButton">In Oceania</button>
-      <button type="button" className='button'>Smaller than LT</button>
-      <button type="button" className='button' >Clear</button>
-
-      {/* <input type="radio" name="oceaniaRegionButton" id="oceaniaRegionButton" />
-      <label htmlFor="oceaniaRegionButton">in Oceania region</label>
-      <input type="radio" name="smallerThanLithuania" id="smallerThanLithuania" />
-      <label htmlFor="smallerThanLithuania">smaller than Lithuania</label> */}
+      <button type="button" className='button' onClick={handleOceaniaFilter}>In Oceania</button>
+      <button type="button" className='button' onClick={handleClear} >Clear</button>
 
       <ul>
           {countriesData && sorted.map((country) => (
@@ -67,7 +74,7 @@ function App() {
                 countryArea={country.area} />
               </li>
             </div>))
-          };
+          }
       </ul>
     </div>
   );
