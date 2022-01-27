@@ -1,7 +1,9 @@
 import React, {useState, useEffect } from 'react';
-import './App.scss';
-import { CountryCard } from './components/CountryCard/CountryCard';
 import _ from "lodash"; 
+import { CountryCard } from './components/CountryCard/CountryCard';
+import { Button } from './components/Button/Button';
+
+import './App.scss';
 
 function App() {
 
@@ -54,17 +56,22 @@ function App() {
 
   return (
     <div className="App">
-      <button type="button" className='button' onClick={() => handleSort('asc')}>Sort By Asc</button>
-      <button type="button" className='button' onClick={() => handleSort('desc')}>Sort By Desc</button>
-      <span>Only show countries that are:</span>
-      <button type="button" className='button' onClick={handleOceaniaFilter}>In Oceania</button>
-      <button type="button" className='button' onClick={handleClear} >Clear</button>
+      <h4>Only show countries that are:</h4>
+      <div className="button-container">
+        <div className="button-container--left">
+          <Button onClick={handleOceaniaFilter} label={"In Oceania"}/>
+          <Button onClick={handleClear} label={"Clear"} disabled/>
+        </div>
+        <div className="button-container--right">
+          <Button onClick={() => handleSort('asc')} label={"Sort By Asc"}/>
+          <Button onClick={() => handleSort('desc')} label={"Sort By Desc"}/>
+        </div>
+      </div>
 
       <ul>
           {countriesData && sorted.map((country) => (
             <div
               key={country.index}
-              className=""
             >
               <li>
                 <CountryCard 
@@ -75,6 +82,7 @@ function App() {
             </div>))
           }
       </ul>
+      <footer>Made by Silvija Aleknaitė, 2022</footer>
     </div>
   );
 }

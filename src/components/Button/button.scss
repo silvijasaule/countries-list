@@ -17,6 +17,10 @@ $_color-white:#fff;
     text-transform: uppercase;
     transition: background-color 0.2s ease;
 
+    &:nth-child(1) {
+        margin-right:12px;
+    }
+
     &__content {
         align-items: center;
         display: flex;
@@ -50,8 +54,4 @@ $_color-white:#fff;
         padding: 9px 16px;
     }
 
-    &--large {
-        font-size: $_font-size-small;
-        padding: 12px 24px;
-    }
 }
