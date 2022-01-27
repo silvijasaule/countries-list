@@ -40,14 +40,13 @@ function App() {
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
   const oceaniaRegion = countriesData?.filter(country => country.region === "Oceania");
 
   const handleOceaniaFilter = () => {
     setCountriesData(oceaniaRegion);
-      }
+  }
 
-      // unfortunately, doesn't work
+  // unfortunately, doesn't work
   const handleClear = () => {
     console.log('clear clicked');
     setCountriesData(allCountries)
