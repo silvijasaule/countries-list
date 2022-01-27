@@ -1,10 +1,12 @@
-## Countries list
+## Countries List
 
-Countries list was created as a technical assignment for Reiz Tech.
+Countries List is a list of all countries in the world that displays country name, region, and area size.
 
 ## Description
 
-Countries list displays a list of all countries in the world showing their names, region and area. The user can sort countries alphabetically (ascending or descending) by name and filter countries that are in Oceania region.
+Using https://restcountries.com free API, I made a visualized representation of countries that displays country name, region, and area size.
+
+The user can sort countries alphabetically (ascending or descending) by name and filter countries that are in Oceania region.
 
 ## Run the project
 
