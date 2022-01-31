@@ -40,10 +40,18 @@ function App() {
     }
   }
 
+  console.log(countriesData);
+
   const oceaniaRegion = countriesData?.filter(country => country.region === "Oceania");
+  const smallerThanLithuania = countriesData?.filter(country => country.area < 65300);
+
 
   const handleOceaniaFilter = () => {
     setCountriesData(oceaniaRegion);
+  }
+
+  const handleLithuaniaFilter = () => {
+    setCountriesData(smallerThanLithuania);
   }
 
   const handleClear = () => {
@@ -56,6 +64,7 @@ function App() {
       <div className="button-container">
         <div className="button-container--left">
           <Button onClick={handleOceaniaFilter} label={"In Oceania"}/>
+          <Button onClick={handleLithuaniaFilter} label={"Smaller than Lithuania"}/>
           <Button onClick={handleClear} label={"Clear"} />
         </div>
         <div className="button-container--right">
