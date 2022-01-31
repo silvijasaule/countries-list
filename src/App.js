@@ -1,5 +1,4 @@
 import React, {useState, useEffect } from 'react';
-import _ from "lodash"; 
 import { CountryCard } from './components/CountryCard/CountryCard';
 import { Button } from './components/Button/Button';
 
@@ -8,6 +7,7 @@ import './App.scss';
 function App() {
 
   const [countriesData, setCountriesData] = useState();
+  const [allCountriesData, setAllCountriesData] = useState();
   const [sortType, setSortType] = useState('asc');
 
   useEffect(() => {
@@ -18,12 +18,10 @@ function App() {
     .then(
       (result) => {
         setCountriesData(result);
+        setAllCountriesData(result)
       }
     );
   }, []);
-
-  const allCountries = _.cloneDeep(countriesData);
-
   
   const sorted = countriesData?.sort( (a,b) => {
     const isReversed = (sortType === 'asc') ? 1 : -1;
@@ -48,10 +46,8 @@ function App() {
     setCountriesData(oceaniaRegion);
   }
 
-  // unfortunately, doesn't work
   const handleClear = () => {
-    console.log('clear clicked');
-    setCountriesData(allCountries)
+    setCountriesData(allCountriesData)
   }
 
   return (
@@ -60,7 +56,7 @@ function App() {
       <div className="button-container">
         <div className="button-container--left">
           <Button onClick={handleOceaniaFilter} label={"In Oceania"}/>
-          <Button onClick={handleClear} label={"Clear"} disabled/>
+          <Button onClick={handleClear} label={"Clear"} />
         </div>
         <div className="button-container--right">
           <Button onClick={() => handleSort('asc')} label={"Sort By Asc"}/>
