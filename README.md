@@ -6,7 +6,7 @@ Countries List is a list of all countries in the world that displays country nam
 
 Using https://restcountries.com free API, I made a visualized representation of countries that displays country name, region, and area size.
 
-The user can sort countries alphabetically (ascending or descending) by name and filter countries that are in Oceania region.
+The user can sort countries alphabetically (ascending or descending) by name and filter countries that are in Oceania region or smaller than Lithuania.
 
 ## Run the project
 
